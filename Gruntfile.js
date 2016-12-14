@@ -8,6 +8,7 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -64,6 +65,13 @@ module.exports = function (grunt) {
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      lessCompile:{
+        files: ['<%= yeoman.app %>/styles/less/*.less'],
+        tasks: ['less'],
+        options: {
+          livereload: true
+        }
       }
     },
 
@@ -423,6 +431,19 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+    less: {
+      dist: {
+        options: {
+          // Specifies directories to scan for @import directives when parsing. 
+          // Default value is the directory of the source, which is probably what you want.
+          paths: ['<%= yeoman.app %>/styles/less'],
+        },
+        files: {
+          // compilation.css  :  source.less
+          '<%= yeoman.app %>/styles/main.css': '<%= yeoman.app %>/styles/less/main.less'
+        }
+      },
     }
   });
 
