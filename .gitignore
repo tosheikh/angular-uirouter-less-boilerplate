@@ -3,3 +3,9 @@
 /.tmp
 /.sass-cache
 /bower_components
+.editorconfig
+.gitattributes
+.jscsrc
+.jshintrc
+.yo-rc.json
+.travis.yml
